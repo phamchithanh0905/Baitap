@@ -1,0 +1,145 @@
+package com.example.myapplication3
+
+import android.os.Bundle
+import androidx.compose.ui.text.style.TextAlign
+import android.widget.Toast
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.input.rememberTextFieldState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.outlined.Edit
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.example.myapplication3.ui.theme.MyApplication3Theme
+import androidx.compose.ui.unit.sp as sp
+
+//class MainActivity : ComponentActivity() {
+//
+//    private lateinit var binding: ActivityMainBinding
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        enableEdgeToEdge()
+//
+//        binding = ActivityMainBinding.inflate(layoutInflater)
+//
+//        setContentView(binding.root)
+//
+//        binding.button.setOnClickListener {
+//            binding.text.text = "I'm \n Phạm Chí Thành"
+//        }
+//    }
+//}
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+           ThucHanh1()
+        }
+    }
+}
+
+@Composable
+fun ThucHanh1() {
+
+    var name by remember { mutableStateOf("") }
+    var age by remember { mutableStateOf("") }
+    val context = LocalContext.current
+
+    Column(modifier = Modifier.fillMaxSize().padding(20.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
+        Text(text = "Thực hành 02",modifier = Modifier.fillMaxWidth(),textAlign = TextAlign.Center, fontSize = 25.sp,fontWeight = androidx.compose.ui.text.font.FontWeight.Bold)
+        Column(modifier = Modifier.fillMaxWidth().background(color = Color.Gray, shape = MaterialTheme.shapes.large).clip(MaterialTheme.shapes.large).padding(20.dp)) {
+            Row(modifier = Modifier.height(40.dp)) {
+                Text(text = "Họ và tên: ",modifier = Modifier.width(100.dp))
+                TextField(value =  name, onValueChange = {name = it}, modifier = Modifier.fillMaxWidth() )
+            }
+            Spacer(modifier = Modifier.height(20.dp))
+            Row(modifier = Modifier.height(40.dp)) {
+                Text(text = "Tuổi : ", modifier = Modifier.width(100.dp))
+                TextField(value =  age, onValueChange = {age = it}, modifier = Modifier.fillMaxWidth(), )
+            }
+
+        }
+        Spacer(modifier = Modifier.height(20.dp))
+        Button(modifier = Modifier.width(200.dp).height(50.dp), onClick ={
+            when (age.toInt()) {
+                in 65.. 100 -> {
+                    Toast.makeText(context, "Người cao tuổi", Toast.LENGTH_SHORT).show()
+                }
+                in 6..65 -> {
+                    Toast.makeText(context, "Người thanh niên", Toast.LENGTH_SHORT).show()
+                }
+                in 2..6 -> {
+                    Toast.makeText(context, "Trẻ em", Toast.LENGTH_SHORT).show()
+                }
+                in 0..2 -> {
+                    Toast.makeText(context, "Em be", Toast.LENGTH_SHORT).show()
+                }
+            }
+        } ) {
+            Text(text = "Kiểm tra")
+        }
+    }
+}
+
+///*@Composable
+//fun Thuchanh3(){
+//    Column {
+//        Image(painter = painterResource(id = R.drawable.__eevf_1ov91zcmudixjyilw), contentDescription = null))
+//
+//        Text(text = "Hello")
+//
+//        Text(text = "Hello")
+//
+//        Button(onClick = { *//*TODO*//* }) {
+//    }
+//}*/
+
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun GreetingPreview() {
+    MyApplication3Theme {
+        ThucHanh1()
+    }
+}
