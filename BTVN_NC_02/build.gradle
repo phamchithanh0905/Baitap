@@ -1,0 +1,19 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    // Cập nhật Android Gradle Plugin (AGP) lên phiên bản mới nhất và tương thích.
+    // AGP 8.2.2 được đề xuất để tương thích tốt với Kotlin 1.9.22 và Android SDK 34.
+    id 'com.android.application' version '8.2.2' apply false
+    id 'com.android.library' version '8.2.2' apply false
+
+    // Cập nhật Kotlin Android Plugin lên phiên bản mới nhất để tương thích với AGP và JDK 17.
+    // Kotlin 1.9.22 là phiên bản ổn định được khuyến nghị cho AGP 8.2.2.
+    id 'org.jetbrains.kotlin.android' version '1.9.22' apply false
+
+    // Cập nhật phiên bản của plugin Safe Args để khớp với thư viện Navigation Component (2.7.6).
+    id 'androidx.navigation.safeargs' version '2.7.6' apply false
+
+    // Dagger Hilt Android Plugin. Giữ nguyên phiên bản này vì nó đã khớp với library (2.50).
+    id 'com.google.dagger.hilt.android' version '2.50' apply false
+}
+
+// Không cần khối buildscript ở đây nữa với cấu hình plugin hiện đại.

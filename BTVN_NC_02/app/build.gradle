@@ -1,0 +1,98 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt' // Kapt for annotation processing, needed for Dagger Hilt
+    id 'dagger.hilt.android.plugin' // Hilt plugin
+    id 'androidx.navigation.safeargs' // Safe Args plugin for Navigation Component
+    id 'kotlin-parcelize' // Parcelize plugin for Kotlin
+}
+
+android {
+    namespace = "ameri.hossein.cryptoapp" // App's package namespace
+    compileSdk 34 // Compile against API 34
+
+    defaultConfig {
+        applicationId = "ameri.hossein.cryptoapp" // Unique app ID
+        minSdk 24
+        targetSdk 34 // Must be >= 33 for Google Play requirements
+        versionCode 1
+        versionName = "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled = false // Disable code minification for release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17 // Java 17 compatibility
+        targetCompatibility = JavaVersion.VERSION_17 // Java 17 compatibility
+    }
+    kotlinOptions {
+        jvmTarget = '17' // JVM Target 17
+    }
+    buildFeatures {
+        viewBinding = true // Enable View Binding
+        buildConfig = true // <--- THIS IS THE KEY FIX: Enable BuildConfig generation
+    }
+}
+
+dependencies {
+    // AndroidX Core
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // Testing
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    // Navigation Component
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.6'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.7.6'
+
+    // Dagger - Hilt
+    implementation 'com.google.dagger:hilt-android:2.50'
+    kapt 'com.google.dagger:hilt-compiler:2.50' // Kapt processor
+
+    // Retrofit (for networking)
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // OkHTTP client (for network logging)
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation "com.squareup.okhttp3:logging-interceptor:4.12.0"
+
+    // Coroutines (for asynchronous processing)
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
+
+    // Lifecycle components
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.8.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.0"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.8.0"
+
+    // Image Loading
+    implementation "io.coil-kt:coil:2.5.0"
+
+    // Gson (for JSON processing)
+    implementation 'com.google.code.gson:gson:2.9.1'
+
+    // Calligraphy (for custom fonts)
+    implementation 'io.github.inflationx:calligraphy3:3.1.1'
+    implementation 'io.github.inflationx:viewpump:2.0.3'
+
+    // Other libraries
+    implementation 'com.github.MrNouri:DynamicSizes:1.0'
+    implementation 'com.diogobernardino:williamchart:3.10.1'
+    implementation 'kr.co.prnd:readmore-textview:1.0.0'
+}
+
+kapt {
+    correctErrorTypes = true
+}
