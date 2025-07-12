@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name"></string>
+
+    <string name="onboarding_title_easy_time">Easy Time Management</string>
+    <string name="onboarding_desc_easy_time">
+    With management based on priority
+    and daily tasks, it will give you convenience
+    in managing and determining the tasks
+    that must be done first.
+</string>
+
+    <string name="onboarding_title_increase_work">Increase Work Effectiveness</string>
+    <string name="onboarding_desc_increase_work">
+    Time management and the determination
+    of more important tasks will give your job
+    statistics better and always improve.
+</string>
+
+    <string name="onboarding_title_receive_notification">Reminder Notification</string>
+    <string name="onboarding_desc_receive_notification">
+    The advantage of this application is that it
+    also provides reminders for you so you
+    don’t forget to keep doing your assignments
+    well and according to the time you have set.
+</string>
+
+</resources>
